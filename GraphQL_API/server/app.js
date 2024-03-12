@@ -1,20 +1,26 @@
 const express = require('express');
-const {graphqlHTTP} = require('express-graphql');
+const { graphqlHTTP } = require('express-graphql');
 const schema = require('./schema/schema');
-
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://benharper:oJ3MbPOxvun1ORbw@cluster0.p3ph1z6.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', { useNewUrlParser: true, useUnifiedTopology: true });
+const cors = require('cors');
 
 const app = express();
 
+app.use(cors()); // allow cross-origin requests
+
+// connect MongoDB Atlas database
+const mongoDBAtlasUri = 'mongodb+srv://hayes28:Password@atlascluster.tqd66ql.mongodb.net/?retryWrites=true&w=majority';
+
+mongoose.connect(mongoDBAtlasUri, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.once('open', () => {
-  console.log('connected to Mongo DB database');
+    console.log('connected to database');
 });
 
-app.use('/graphql',graphqlHTTP({
-  schema: schema,
-  graphiql: true
+app.use('/graphql', graphqlHTTP({
+    schema,
+    graphiql: true
 }));
-app.listen(3000,()=>{
-  console.log('now listening for request on port 3000');
+
+app.listen(4000, () => {
+    console.log('now listening for request on port 4000');
 });
