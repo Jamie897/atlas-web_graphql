@@ -9,6 +9,8 @@ const app = express();
 // connect MongoDB Atlas database
 const mongoDBAtlasUri = 'mongodb+srv://JamieToman:Password@atlascluster.tqd66ql.mongodb.net/?retryWrites=true&w=majority';
 
+app.use(cors());
+
 app.use('/graphql', graphqlHTTP({
   schema, // Pass the imported schema here
   graphiql: true // Enable GraphiQL
