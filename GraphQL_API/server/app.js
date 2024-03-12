@@ -6,6 +6,7 @@ const app = express();
 
 app.use('/graphql', graphqlHTTP({
   schema, // Pass the imported schema here
+  graphiql: true // Enable GraphiQL
 }));
 
 app.listen(4000, () => {
