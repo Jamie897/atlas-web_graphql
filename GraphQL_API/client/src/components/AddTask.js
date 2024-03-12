@@ -1,7 +1,7 @@
 import { graphql } from "react-apollo";
 import React, { useState } from "react";
 import { flowRight as compose } from "lodash";
-import { getProjectsQuery, getTasksQuery, addTaskMutation } from "../queries/queries";
+import { getProjectsQuery, getTasksQuery, addTaskMutation } from "../queries/queries.js";
 
 function AddTask(props) {
   function displayProjects() {

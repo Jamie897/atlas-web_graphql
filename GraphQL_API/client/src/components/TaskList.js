@@ -2,7 +2,7 @@ import { graphql } from "react-apollo";
 import React, { useState } from 'react';
 // components
 import TaskDetails from './TaskDetails';
-import { getTasksQuery } from '../queries/queries';
+import { getTasksQuery } from '../queries/queries.js';
 
 
 function TaskList(props) {
