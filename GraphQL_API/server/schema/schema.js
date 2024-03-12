@@ -14,7 +14,7 @@ const TaskType = new GraphQLObjectType({
     project: { 
       type: ProjectType,
       resolve(parent, args) {
-        // Resolve logic to fetch project data
+        return Project.findById(parent.projectId);
       }
     }
   })
@@ -31,7 +31,7 @@ const ProjectType = new GraphQLObjectType({
     tasks: {
       type: new GraphQLList(TaskType),
       resolve(parent, args) {
-        // Resolve logic to fetch tasks data
+        return Task.find({ projectId: parent.id });
       }
     }
   })
@@ -72,7 +72,7 @@ const RootQueryType = new GraphQLObjectType({
         id: { type: GraphQLID }
       },
       resolve(parent, args) {
-        // Resolve logic to fetch task data
+        return Task.findById(args.id);
       }
     },
     project: {
@@ -81,19 +81,19 @@ const RootQueryType = new GraphQLObjectType({
         id: { type: GraphQLID }
       },
       resolve(parent, args) {
-        // Resolve logic to fetch project data
+        return Project.findById(args.id);
       }
     },
     tasks: {
       type: new GraphQLList(TaskType),
       resolve(parent, args) {
-        // Resolve logic to fetch all tasks data
+        return Task.find({});
       }
     },
     projects: {
       type: new GraphQLList(ProjectType),
       resolve(parent, args) {
-        // Resolve logic to fetch all projects data
+        return Project.find({});
       }
     }
   }
